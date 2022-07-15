@@ -60,6 +60,7 @@ export const questionRouter = createRouter()
             questionId: z.string(),
         }),
         async resolve({ ctx, input }) {
+            console.log(input.questionId);
             if (!ctx.session || !ctx.session.user) {
                 throw new TRPCError({
                     message: "You are not signed in",
