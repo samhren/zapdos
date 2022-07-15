@@ -9,10 +9,17 @@ const QuestionsView = () => {
         "questions.get-my-questions",
     ]);
 
+    const { mutate: pinQuestion } = trpc.useMutation("questions.pin-question");
+
     return (
         <div className="flex flex-col">
             {data?.map((q) => (
-                <div key={q.id}>{q.body}</div>
+                <div key={q.id}>
+                    {q.body}
+                    <button onClick={() => pinQuestion({ questionId: q.id })}>
+                        Pin
+                    </button>
+                </div>
             ))}
         </div>
     );
